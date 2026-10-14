@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoAction - Climate Action</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f0f8f0;
+    color: #23412c;
+}
+header {
+    background: #176b45;
+    color: white;
+    padding: 25px;
+    text-align: center;
+}
+nav {
+    background: #104d32;
+    padding: 12px;
+    text-align: center;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 12px;
+}
+.hero {
+    text-align: center;
+    padding: 45px 15px;
+    background: #d9f3df;
+}
+.hero h2 {
+    font-size: 30px;
+}
+button {
+    background: #176b45;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+section {
+    padding: 25px;
+    text-align: center;
+}
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 230px;
+    box-shadow: 0 2px 8px #c8d8c9;
+}
+input {
+    padding: 10px;
+    margin: 6px;
+    width: 190px;
+    max-width: 80%;
+}
+#result {
+    font-weight: bold;
+    margin: 15px;
+}
+footer {
+    background: #104d32;
+    color: white;
+    padding: 18px;
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🌍 EcoAction</h1>
+    <p>Small Steps Today, A Greener Tomorrow</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#actions">Take Action</a>
+    <a href="#calculator">Calculator</a>
+</nav>
+
+<div class="hero" id="home">
+    <h2>Save Earth, Save Our Future 🌱</h2>
+    <p>Join us to reduce pollution, save energy and protect nature.</p>
+    <button onclick="document.getElementById('actions').scrollIntoView()">
+        Start Taking Action
+    </button>
+</div>
+
+<section id="about">
+    <h2>About Climate Action</h2>
+    <p>
+        Climate action means taking steps to reduce global warming,
+        control greenhouse gas emissions and protect our planet.
+        Our goal is to encourage everyone to live sustainably.
+    </p>
+</section>
+
+<section id="actions">
+    <h2>🌿 Take Climate Action</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>🌳 Plant Trees</h3>
+            <p>Plant trees and protect green spaces.</p>
+            <button onclick="done(this)">Mark Done</button>
+        </div>
+        <div class="card">
+            <h3>💡 Save Energy</h3>
+            <p>Switch off lights and unused appliances.</p>
+            <button onclick="done(this)">Mark Done</button>
+        </div>
+        <div class="card">
+            <h3>🚲 Green Travel</h3>
+            <p>Walk, cycle or use public transport.</p>
+            <button onclick="done(this)">Mark Done</button>
+        </div>
+        <div class="card">
+            <h3>♻️ Reduce Waste</h3>
+            <p>Reuse items and recycle waste responsibly.</p>
+            <button onclick="done(this)">Mark Done</button>
+        </div>
+    </div>
+    <p id="message">Actions completed: 0</p>
+</section>
+
+<section id="calculator">
+    <h2>🌎 Carbon Footprint Calculator</h2>
+    <p>Enter your daily travel distance and electricity use.</p>
+
+    <input type="number" id="km" min="0"
+           placeholder="Car travel (km)" />
+    <br>
+    <input type="number" id="units" min="0"
+           placeholder="Electricity (kWh)" />
+    <br>
+    <button onclick="calculate()">Calculate Footprint</button>
+    <p id="result"></p>
+    <p>Demo estimate only. Actual emissions vary by location and activity.</p>
+</section>
+
+<section>
+    <h2>Our Mission 🌏</h2>
+    <p>Reduce emissions. Protect biodiversity. Build a sustainable future.</p>
+</section>
+
+<footer>
+    <p>© 2026 EcoAction | Climate Action for Everyone</p>
+    <p>United Nations Sustainable Development Goal 13</p>
+</footer>
+
+<script>
+let count = 0;
+
+function done(button) {
+    if (button.innerText === "Mark Done") {
+        count++;
+        button.innerText = "Completed ✓";
+        document.getElementById("message").innerText =
+            "Actions completed: " + count;
+    }
+}
+
+function calculate() {
+    let km = Number(document.getElementById("km").value);
+    let units = Number(document.getElementById("units").value);
+
+    if (km < 0 || units < 0 ||
+        document.getElementById("km").value === "" ||
+        document.getElementById("units").value === "") {
+        document.getElementById("result").innerText =
+            "Please enter both values as zero or more.";
+        return;
+    }
+
+    let total = km * 0.20 + units * 0.70;
+
+    document.getElementById("result").innerText =
+        "Estimated emissions: " + total.toFixed(2) +
+        " kg CO₂e per day";
+}
+</script>
+
+</body>
+</html>
